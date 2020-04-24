@@ -4,11 +4,7 @@ import { encode } from 'base-64';
 
 export const AuthContext = createContext();
 
-type AuthContextProps = {
-  children: React.FC
-}
-
-export const AuthContextProvider = (props : AuthContextProps) => {
+export const AuthContextProvider = (props) => {
   const [auth, setAuth] = useState({
     access_token: "",
     refresh_token: "",

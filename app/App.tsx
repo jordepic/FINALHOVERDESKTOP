@@ -8,11 +8,13 @@ import { ClipContextProvider } from './Contexts/clipcontext';
 import { ProtectedRoute } from './Components/protectedroute';
 import { Titlebar, Color } from 'custom-electron-titlebar';
 
-// new Titlebar({
-//     backgroundColor: Color.fromHex('#181A28'),
-//     titleHorizontalAlignment: 'left',
-//     icon: './Assets/tray.png'
-// });
+window.addEventListener('DOMContentLoaded', () => {
+  new Titlebar({
+    backgroundColor: Color.fromHex('#181A28'),
+    titleHorizontalAlignment: 'left',
+    icon: './Assets/tray.png'
+});
+})
 
 const App = () => {
   return (

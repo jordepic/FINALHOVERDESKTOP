@@ -61,6 +61,8 @@ const createWindow = async () => {
     minHeight: 728,
     minWidth: 1024,
     frame: false,
+    titleBarStyle: "hidden",
+    title: "Hover.gg",
     icon: path.join(__dirname, 'Assets/desktopicon.png'),
     webPreferences:
       process.env.NODE_ENV === 'development' || process.env.E2E_BUILD === 'true'
