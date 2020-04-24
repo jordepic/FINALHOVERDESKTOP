@@ -11,9 +11,7 @@ import { Titlebar, Color } from 'custom-electron-titlebar';
 window.addEventListener('DOMContentLoaded', () => {
   new Titlebar({
     backgroundColor: Color.fromHex('#181A28'),
-    titleHorizontalAlignment: 'left',
-    icon: './Assets/tray.png'
-});
+  });
 })
 
 const App = () => {
