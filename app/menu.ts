@@ -7,11 +7,6 @@ import {
   MenuItemConstructorOptions
 } from 'electron';
 
-interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {
-  selector?: string;
-  submenu?: DarwinMenuItemConstructorOptions[] | Menu;
-}
-
 export default class MenuBuilder {
   mainWindow: BrowserWindow;
 
@@ -33,7 +28,9 @@ export default class MenuBuilder {
         : this.buildDefaultTemplate();
 
     const menu = Menu.buildFromTemplate(template);
-    Menu.setApplicationMenu(menu);
+
+    Menu.setApplicationMenu(null);
+
 
     return menu;
   }
@@ -54,11 +51,12 @@ export default class MenuBuilder {
   }
 
   buildDarwinTemplate() {
-    const subMenuAbout: DarwinMenuItemConstructorOptions = {
+    const subMenuAbout: MenuItemConstructorOptions = {
       label: 'Electron',
       submenu: [
         {
           label: 'About ElectronReact',
+          // @ts-ignore
           selector: 'orderFrontStandardAboutPanel:'
         },
         { type: 'separator' },
@@ -85,9 +83,10 @@ export default class MenuBuilder {
         }
       ]
     };
-    const subMenuEdit: DarwinMenuItemConstructorOptions = {
+    const subMenuEdit: MenuItemConstructorOptions = {
       label: 'Edit',
       submenu: [
+        // @ts-ignore
         { label: 'Undo', accelerator: 'Command+Z', selector: 'undo:' },
         { label: 'Redo', accelerator: 'Shift+Command+Z', selector: 'redo:' },
         { type: 'separator' },
@@ -139,12 +138,13 @@ export default class MenuBuilder {
         }
       ]
     };
-    const subMenuWindow: DarwinMenuItemConstructorOptions = {
+    const subMenuWindow: MenuItemConstructorOptions = {
       label: 'Window',
       submenu: [
         {
           label: 'Minimize',
           accelerator: 'Command+M',
+          // @ts-ignore
           selector: 'performMiniaturize:'
         },
         { label: 'Close', accelerator: 'Command+W', selector: 'performClose:' },
