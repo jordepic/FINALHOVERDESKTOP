@@ -1,8 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html style="height: 100%">
   <head>
     <meta charset="utf-8" />
-    <title>Hello Electron React!</title>
+    <link rel="stylesheet" type="text/css" href="title.css">
+    <title>Hover.gg</title>
+    <style>
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      /* Track */
+      ::-webkit-scrollbar-track {
+        background: #26293B; 
+      }
+      
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: #2F3143;
+      }
+
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background: #2F3143; 
+      }
+    </style>
     <script>
       (() => {
         if (
@@ -18,8 +39,8 @@
       })();
     </script>
   </head>
-  <body>
-    <div id="root"></div>
+  <body style="background-color: #181A28; height: 100%; margin: 0;">
+    <div id="root" style="height: 100%"></div>
     <script>
       if (typeof process === 'object') {
         const scripts = [];
