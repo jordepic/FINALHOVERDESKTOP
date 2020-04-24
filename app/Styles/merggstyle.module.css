@@ -1,0 +1,768 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu&display=swap');
+
+.window-title {
+  font-family: Ubuntu;
+  color: blue;
+  font-size: large;
+}
+
+#astronaut {
+  width: 100%;
+  object-fit: contain;
+}
+
+#astronautWrapper {
+  width: 15%;
+  margin-top: 5%;
+}
+
+#welcomeWrapper {
+  width: 25%;
+}
+
+#usernameWrapper {
+  width: 25%;
+}
+
+#otherWrapper {
+  width: 25%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#welcome {
+  margin-top: 2%;
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 100%;
+  /* or 133% */
+
+  display: flex;
+
+  /* text grey */
+  color: #8C90A8;
+  text-align: center;
+}
+
+.welcomeWrapper {
+  align-items: center;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.textBox {
+  border: 1px solid #8C90A8;
+  border-radius: 24px;
+  box-sizing: border-box;
+  background-color: #181A28;
+  width: 100%;
+  height: 100%;
+  padding-left: 10%;
+  color: #FFFFFF;
+}
+
+.textboxWrapper {
+  width: 100%;
+  height: 35%;
+  margin-bottom: 4%;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.tbLeftIcon {
+  position: absolute;
+  left: 0;
+  padding-left: 5%;
+  height: 30%;
+}
+
+.tbRightIcon {
+  position: absolute;
+  right: 0;
+  padding-right: 5%;
+  height: 30%;
+}
+
+#searchBar {
+  border-radius: 18px;
+  box-sizing: border-box;
+  background-color: #2F3143;
+  padding-left: 10%;
+  width: 100%;
+  height: 100%;
+  color: #FFFFFF;
+  border-style: none;
+  margin-left: 0;
+}
+
+#searchBarIcon {
+  padding-left: 5%;
+  height: 30%;
+  position: absolute;
+  left: 0;
+}
+
+#searchBarWrapper{
+  width: 50%;
+  height: 55%;
+  margin-left: 24px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+#rightProfileWrapper{
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: row;
+  margin-right: 24px;
+}
+
+input:focus, focus{
+  outline: none;
+}
+
+#errorMessage {
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+#signIn {
+  background: #038EC9;
+  border-radius: 24px;
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  display: flex;
+  color: #FFFFFF;
+  border: none;
+  width: 100%;
+  height: 35%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+#signInCenter {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.flexContainerVertical {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.flexContainerHorizontal {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 100%;
+}
+
+#clipUploaderView {
+  background-color: #181A28;
+  width: 15%;
+  height: 100%;
+}
+
+#clipView {
+  background-color: #26293B;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  flex: 85%;
+  min-height: 100%;
+  position: relative;
+}
+
+#container {
+	height: 100%;
+  min-height: 100%;
+	display: flex;
+  flex-direction: column;
+}
+
+.upperContainer {
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.upperLeftContainer {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#leftProfileContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#leftProfileImage {
+  margin-top: 10%;
+  width: 40%;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+#rightProfileImage {
+  border-radius: 50%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.lowerContainer {
+  flex-basis: 20%;
+}
+
+.uploadContainerVertical {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  height: 100%
+}
+
+#leftHR {
+  display: block;
+  border: 1px solid#2F3143;
+  margin-left: 24px;
+  margin-right: 24px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+#rightHR {
+  display: block;
+  border: 1px solid#2F3143;
+  margin-left: 24px;
+  margin-right: 24px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+#usernameText {
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 28px;
+  margin-top: 2%;
+  /* identical to box height */
+  color: #FFFFFF;
+}
+
+#leftLogo {
+  width: 50%;
+}
+
+#progressBar {
+  background: #26293B;
+  border-radius: 12px;
+  width: 75%;
+  height: 10px;
+  position: relative
+}
+
+#innerProgressBar {
+  position: absolute;
+  left: 0;
+  background: #038EC9;
+  height: 100%;
+  border-radius: 12px;
+}
+
+#storageText {
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  color: #8C90A8;
+  margin-top: 5%;
+  text-align: center;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+#uploadButton {
+  background: #038EC9;
+  border-radius: 24px;
+  width: 80%;
+  height: 20%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+#uploadButtonHelper {
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+}
+
+#uploadVideoText {
+  font-size: 12px;
+  line-height: 14px;
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: normal;
+  color: #FFFFFF;
+  margin-bottom: 0;
+  margin-left: 2px;
+  margin-top: 0;
+}
+
+#yourVidsWrapper {
+  margin-top: 20px;
+  margin-left: 24px;
+  margin-bottom: 24px;
+}
+
+#yourVidsText {
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 37px;
+  color: #FFFFFF;
+  float: left;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+#tableHeadWrapper {
+  margin-right: 24px;
+  margin-left: 24px;
+  height: 3%;
+  display: flex;
+  flex-direction: row;
+}
+
+.tableHeader {
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
+  color: #FFFFFF;
+  float: left;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+#clipWrapper{
+  height: 75%;
+}
+
+#noClipWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 95%;
+  background-color: #2F3143;
+  margin-top: .5%;
+  margin-left: 24px;
+  margin-right: 24px;
+  margin-bottom: 0px;
+}
+
+#flexibleClipWrapper {
+  width: 100%;
+  background: #26293B;
+  margin-top: 16px;
+}
+
+#clipTable {
+  width: 100%;
+}
+
+.firstColumn {
+  flex-basis: 45%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 24px;
+}
+
+.secondColumn {
+  flex-basis: 15%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.thirdColumn {
+  flex-basis: 11%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.fourthColumn {
+  flex-basis: 29%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#tv {
+  width: 15%;
+}
+
+#noClipText {
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 28px;
+  color: #FFFFFF;
+  margin-top: 10px;
+}
+
+.videoThumbnail {
+  height: 100%;
+  object-fit: contain;
+  float: left;
+  overflow: hidden;
+  opacity: .4;
+  border-radius: 4px;
+}
+
+.tableRowWrapper {
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 24px;
+  margin-right: 24px;
+}
+
+.tableRowText {
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  color: #8C90A8;
+  float: left;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.rowWrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.nameTimeWrapper {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  width: 100%;
+}
+
+.nameText {
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  color: #FFFFFF;
+}
+
+.timeText {
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  color: #8C90A8;
+  float: left;
+  margin-bottom: 0;
+}
+
+.dropdown {
+  position: relative;
+  margin-left: 5px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.dropdownContent {
+  display: none;
+  position: absolute;
+  right: 0;
+  z-index: 1;
+  background: #2F3143;
+  width: 200px;
+}
+
+.dropdown:hover .dropdownContent {
+  display: block;
+}
+
+.dropdownMenu {
+  color: #FFFFFF;
+  width: 100%;
+  padding-left: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  cursor: pointer;
+}
+
+.thumbnailWrapper {
+  height: 80%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+
+.playBackground {
+  position: absolute;
+  z-index: 1;
+  width: 50%;
+  height: 50%;
+  cursor: pointer;
+  border-radius: 50%;
+  background: #038EC9;
+  opacity: 0.8;
+}
+
+.playButton {
+  position: absolute;
+  z-index: 2;
+  width: 20%;
+  cursor: pointer;
+  margin-left: 3%;
+}
+
+#videoPlayerWrapper {
+  position: absolute;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#videoPlayer {
+  height: 60%;
+  outline: none;
+}
+
+#exitWrapper {
+  height: 60%;
+  width: 100%;
+  width: 1%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-left: 5px;
+}
+
+.iconWrapper {
+  width: 40px;
+  height: 40px;
+  margin-left: 10px;
+  border-radius: 16px;
+  background: #26293B;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.buttonImage {
+  height: 50%;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+#contact {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+#contact:hover {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.editTextBox {
+  border: none;
+  outline: none;
+  background-color: #2F3143;
+  color: #FFFFFF;
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  color: #FFFFFF;
+  border-bottom: 2px solid #8C90A8;
+  width: 50%;
+}
+
+.editButtonWrapper {
+  height: 50%;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.editButtonImage {
+  height: 100%;
+}
+
+.editButtonIcon {
+  position: absolute;
+  height: 40%;
+  z-index: 1;
+}
+
+.uploadProgressContainer {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: stretch;
+  width: 85%;
+  z-index: 10;
+}
+
+.uploadProgressWrapper {
+  width: 100%;
+  background: #FFFFFF;
+  height: 15%;
+  position: relative;
+  height: 76px;
+}
+
+.uploadProgressWrapperComplete {
+  width: 100%;
+  background: #FFFFFF;
+  height: 15%;
+  position: relative;
+  height: 76px;
+  animation: fadein linear 5s forwards;
+}
+
+@keyframes fadein {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+.uploadProgressBar {
+  width: 100%;
+  height: 4px;
+  position: absolute;
+  bottom: 0;
+  background: #f2f2f2;
+}
+
+.innerUploadProgressWrapper {
+  margin-left: 24px;
+  margin-right: 24px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.innerUploadProgressBar {
+  height: 100%;
+  background: #038EC9;
+  position: absolute;
+  left: 0;
+  z-index: 12;
+}
+
+.leftUploadTextWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100%;
+  width: 40%;
+}
+
+.middleUploadTextWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 20%;
+}
+
+.topUploadText {
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  color: #8C90A8;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.bottomUploadText {
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+  color: #181A28;
+  margin-top: 0;
+}
+
+
+

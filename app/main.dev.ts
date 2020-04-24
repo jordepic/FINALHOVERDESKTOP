@@ -200,6 +200,9 @@ ipcMain.on('auth-token-fetch', (event) => {
   .then((cookie) => {
     event.reply('auth-token-fetch-reply', cookie[0].value)
   })
+  .catch((error) => {
+    console.log(error)
+  })
 })
 
 ipcMain.on('auth-token-remove', (event) => {
@@ -232,6 +235,9 @@ ipcMain.on('open-directory-chooser', (event) => {
         .then(() => {
         index === 1 ? event.reply('open-directory-chooser-reply', true) : event.reply('open-directory-chooser-reply', false);
         })
+        .catch((error) => {
+          console.log(error)
+        })
       }
     }
   })
@@ -242,6 +248,9 @@ ipcMain.on('clip-path-fetch', (event, arg) => {
   .then((cookie) => {
     event.reply('clip-path-fetch-reply', cookie[0].value);
     event.reply('start-watcher', {path: cookie[0].value, uploadExisting: arg});
+  })
+  .catch((error) => {
+    console.log(error)
   })
 })
 

@@ -1,19 +1,13 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { render } from 'react-dom';
-import { AppContainer as ReactHotAppContainer } from 'react-hot-loader';
-import Root from './containers/Root';
-import { configureStore, history } from './store/configureStore';
-import './app.global.css';
-
-const store = configureStore();
-
-const AppContainer = process.env.PLAIN_HMR ? Fragment : ReactHotAppContainer;
+import { HashRouter } from 'react-router-dom';
+import App from './App';
 
 document.addEventListener('DOMContentLoaded', () =>
   render(
-    <AppContainer>
-      <Root store={store} history={history} />
-    </AppContainer>,
+      <HashRouter>
+        <App />
+      </HashRouter>,
     document.getElementById('root')
   )
 );
