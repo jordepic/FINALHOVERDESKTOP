@@ -9,7 +9,7 @@
  * `./app/main.prod.js` using webpack. This gives us some performance wins.
  */
 import path from 'path';
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain, Tray, Menu } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
@@ -58,6 +58,10 @@ const createWindow = async () => {
     show: false,
     width: 1024,
     height: 728,
+    minHeight: 728,
+    minWidth: 1024,
+    frame: false,
+    icon: path.join(__dirname, 'Assets/desktopicon.png'),
     webPreferences:
       process.env.NODE_ENV === 'development' || process.env.E2E_BUILD === 'true'
         ? {
@@ -84,6 +88,16 @@ const createWindow = async () => {
     }
   });
 
+  mainWindow.on('minimize',(event) => {
+    event.preventDefault();
+  });
+
+  mainWindow.on('close', (event) => {
+    event.preventDefault();
+    mainWindow.hide();
+    return false;
+});
+
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
@@ -96,10 +110,6 @@ const createWindow = async () => {
   new AppUpdater();
 };
 
-/**
- * Add event listeners...
- */
-
 app.on('window-all-closed', () => {
   // Respect the OSX convention of having the application in memory even
   // after all windows have been closed
@@ -108,10 +118,156 @@ app.on('window-all-closed', () => {
   }
 });
 
-app.on('ready', createWindow);
+let tray : Tray | null = null;
+
+app.on('ready', () => {
+  // var monitor = require('active-window');
+  // var _ = require('lodash');
+  // var ps = require('current-processes');
+
+  // let callback = function(window){
+  // try {
+
+  //   let cpuTop = false;
+  //   let memTop = false;
+
+  //   ps.get(function(err, processes) {
+  //     var sortedCPU = _.sortBy(processes, 'cpu');
+  //     var top5CPU  = sortedCPU.reverse().splice(0, 1);
+  //     var sortedMEM = _.sortBy(processes, 'mem.usage');
+  //     var top5MEM  = sortedMEM.reverse().splice(0, 1);
+  //     console.log(top5CPU);
+  //     console.log(top5MEM);
+  //     for (const process of top5CPU) {
+  //       if (process.name === window.app) {
+  //         cpuTop = true;
+  //       }
+  //     }
+  //     for (const process of top5MEM) {
+  //       if (process.name === window.app) {
+  //         memTop = true;
+  //       }
+  //     }
+  //     console.log("App: " + window.app);
+  //     console.log("Title: " + window.title);
+  //     console.log(cpuTop);
+  //     console.log(memTop);
+  //   });
+  //   }catch(err) {
+  //     console.log(err);
+  //   }
+  // }
+
+  // monitor.getActiveWindow(callback, -1, 30);
+
+  createWindow();
+  tray = new Tray(path.join(__dirname, 'Assets/tray.png'));
+  tray.setToolTip('Hover.gg')
+  const contextMenu = Menu.buildFromTemplate([
+    { label: 'Open', click:  function(){
+        mainWindow.show();
+    } },
+    { label: 'Quit', click:  function(){
+        app.quit();
+        if (tray !== null) {
+          tray.destroy();
+        }
+    } }
+  ]);
+  tray.setContextMenu(contextMenu)
+  tray.on('click', () => {
+    mainWindow.show();
+  })
+});
 
 app.on('activate', () => {
   // On macOS it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
   if (mainWindow === null) createWindow();
 });
+
+const { session } = require('electron')
+
+ipcMain.on('auth-token-store', (event, arg) => {
+  const cookie = { url: 'https://hover.gg', name: 'refresh_token', value: arg, expirationDate: (new Date(new Date().setFullYear(new Date().getFullYear() + 1))).getTime()/1000 }
+  session.defaultSession.cookies.set(cookie)
+  .then(() => {
+  })
+})
+
+ipcMain.on('auth-token-fetch', (event) => {
+  session.defaultSession.cookies.get({ url: 'https://hover.gg', name: 'refresh_token' })
+  .then((cookie) => {
+    event.reply('auth-token-fetch-reply', cookie[0].value)
+  })
+})
+
+ipcMain.on('auth-token-remove', (event) => {
+  session.defaultSession.cookies.remove( 'https://hover.gg', 'refresh_token' )
+  .then(() => {
+    event.reply('auth-token-remove-reply')
+  })
+})
+
+const { dialog } = require('electron');
+
+ipcMain.on('open-directory-chooser', (event) => {
+  dialog.showOpenDialog({
+    properties: ['openDirectory']
+  }).then(path => {
+    if(path.filePaths !== []){
+
+      const options = {
+        type: 'question',
+        buttons: ['Cancel', 'Yes, please', 'No, thanks'],
+        defaultId: 2,
+        title: 'Question',
+        message: 'Upload existing clips in this directory (and subdirectories)?',
+      }
+      let index = dialog.showMessageBoxSync(options);
+
+      if (index === 1 || index === 2) {
+        const cookie = { url: 'https://hover.gg', name: 'clip_path', value: path.filePaths[0], expirationDate: (new Date(new Date().setFullYear(new Date().getFullYear() + 1))).getTime()/1000 }
+        session.defaultSession.cookies.set(cookie)
+        .then(() => {
+        index === 1 ? event.reply('open-directory-chooser-reply', true) : event.reply('open-directory-chooser-reply', false);
+        })
+      }
+    }
+  })
+})
+
+ipcMain.on('clip-path-fetch', (event, arg) => {
+  session.defaultSession.cookies.get({ url: 'https://hover.gg', name: 'clip_path' })
+  .then((cookie) => {
+    event.reply('clip-path-fetch-reply', cookie[0].value);
+    event.reply('start-watcher', {path: cookie[0].value, uploadExisting: arg});
+  })
+})
+
+ipcMain.on('ffmpeg-path-fetch', (event) => {
+  var ffmpeg = require('ffmpeg-static-electron');
+  var ffprobe = require('ffprobe-static-electron');
+  let response = {ffmpeg: ffmpeg.path, ffprobe: ffprobe.path}
+  event.reply('ffmpeg-path-reply', response);
+})
+
+var AutoLaunch = require('auto-launch');
+var hoverAutoLauncher = new AutoLaunch({
+    name: 'Hover.gg',
+    isHidden: true
+});
+
+hoverAutoLauncher.enable();
+
+hoverAutoLauncher.isEnabled()
+.then(function(isEnabled){
+    if(isEnabled){
+        return;
+    }
+    hoverAutoLauncher.enable();
+})
+.catch(function(err){
+    // handle error
+});
+
