@@ -9,7 +9,7 @@
  * `./app/main.prod.js` using webpack. This gives us some performance wins.
  */
 import path from 'path';
-import { app, BrowserWindow, ipcMain, Tray, Menu } from 'electron';
+import { app, BrowserWindow, ipcMain, Tray, Menu, nativeImage } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
@@ -163,7 +163,9 @@ app.on('ready', () => {
   // monitor.getActiveWindow(callback, -1, 30);
 
   createWindow();
-  tray = new Tray(path.join(__dirname, 'Assets/tray.png'));
+  const trayIcon = path.join(__dirname, 'Assets/tray.png');
+  const nimage = nativeImage.createFromPath(trayIcon);
+  tray = new Tray(nimage);
   tray.setToolTip('Hover.gg')
   const contextMenu = Menu.buildFromTemplate([
     { label: 'Open', click:  function(){
