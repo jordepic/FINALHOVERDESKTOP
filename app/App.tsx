@@ -11,7 +11,7 @@ import { Titlebar, Color } from 'custom-electron-titlebar';
 // new Titlebar({
 //     backgroundColor: Color.fromHex('#181A28'),
 //     titleHorizontalAlignment: 'left',
-//     icon: './Assets/astronaut.svg'
+//     icon: './Assets/tray.png'
 // });
 
 const App = () => {
