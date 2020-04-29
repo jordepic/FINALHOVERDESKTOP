@@ -220,17 +220,6 @@ export const UserView : React.SFC<RouteComponentProps> = props => {
     fetchClips()
   }, [auth.userId, fetchHook])
 
-  useEffect(() => {
-    ipcRenderer.on('ffmpeg-path-reply', (_, arg) => {
-      setffMpegPath(arg.ffmpeg);
-      setFFProbePath(arg.ffprobe);
-    })
-    ipcRenderer.send('ffmpeg-path-fetch');
-  }, [])
-
-  const [ffMpegPath, setffMpegPath] = useState("");
-  const [ffProbePath, setFFProbePath] = useState("");
-
   return (
     <div style={{ width: "100%", height: "100%", position: "relative"}}>
       {loading ? <div></div> : <VideoPlayer />}
@@ -302,7 +291,7 @@ export const UserView : React.SFC<RouteComponentProps> = props => {
             </div>
             <hr id={styles.rightHR} />
             <div id={styles.yourVidsWrapper}>
-              <h3 id={styles.yourVidsText}>{ffMpegPath}</h3>
+              <h3 id={styles.yourVidsText}>Your videos</h3>
             </div>
             <div id={styles.tableHeadWrapper}>
               <div className={styles.firstColumn}>

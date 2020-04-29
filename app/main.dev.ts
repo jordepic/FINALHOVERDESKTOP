@@ -265,9 +265,10 @@ ipcMain.on('clip-path-fetch', (event, arg) => {
 })
 
 ipcMain.on('ffmpeg-path-fetch', (event) => {
-  var ffmpeg = require('ffmpeg-static-electron');
-  var ffprobe = require('ffprobe-static-electron');
-  let response = {ffmpeg: ffmpeg.path, ffprobe: ffprobe.path}
+  var ffmpeg = require('ffmpeg-static-electron').path.replace('app.asar', 'app.asar.unpacked');
+  var ffprobe = require('ffprobe-static-electron').path.replace('app.asar', 'app.asar.unpacked');
+  //var pathToFfmpeg = require('ffmpeg-static');
+  let response = {ffmpeg, ffprobe}
   event.reply('ffmpeg-path-reply', response);
 })
 
