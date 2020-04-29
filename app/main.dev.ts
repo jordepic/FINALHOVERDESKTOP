@@ -14,6 +14,8 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 
+let close = false;
+
 export default class AppUpdater {
   constructor() {
     log.transports.file.level = 'info';
@@ -30,8 +32,9 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 if (
-  process.env.NODE_ENV === 'development' ||
-  process.env.DEBUG_PROD === 'true'
+  // process.env.NODE_ENV === 'development' ||
+  // process.env.DEBUG_PROD === 'true'
+  true
 ) {
   require('electron-debug')();
 }
@@ -95,9 +98,11 @@ const createWindow = async () => {
   });
 
   mainWindow.on('close', (event) => {
-    event.preventDefault();
-    mainWindow.hide();
-    return false;
+    if (!close) {
+      event.preventDefault();
+      mainWindow.hide();
+      return false;
+    }
 });
 
   mainWindow.on('closed', () => {
@@ -172,6 +177,7 @@ app.on('ready', () => {
         mainWindow.show();
     } },
     { label: 'Quit', click:  function(){
+        close = true;
         app.quit();
         if (tray !== null) {
           tray.destroy();
