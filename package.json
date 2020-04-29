@@ -111,9 +111,7 @@
     "email": "jordan@skwads.com",
     "url": "https://hover.gg"
   },
-  "contributors": [
-    
-  ],
+  "contributors": [],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/electron-react-boilerplate/electron-react-boilerplate/issues"
@@ -230,7 +228,6 @@
     "eslint-plugin-testcafe": "^0.2.1",
     "fbjs-scripts": "^1.2.0",
     "file-loader": "^5.0.2",
-    "husky": "^4.2.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^25.1.0",
     "lint-staged": "^10.0.2",
@@ -277,8 +274,6 @@
     "electron-log": "^4.0.6",
     "electron-titlebar-windows": "^3.0.0",
     "electron-updater": "^4.2.0",
-    "ffmpeg-static-electron": "^2.0.1",
-    "ffprobe-static-electron": "^2.0.0",
     "filesize": "^6.1.0",
     "fluent-ffmpeg": "^2.1.2",
     "history": "^4.10.1",

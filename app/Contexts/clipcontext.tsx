@@ -24,7 +24,6 @@ export const ClipContextProvider = props => {
 
     let response = await fetch(`${API_URL}/clipCloud/user/${userId}/`, requestOptions)
     let result = await response.json()
-    console.log(result);
     result.forEach(video => {
       videos.push({
         url: video.mediaURL, id: video.id, selected: false, entered: false,
