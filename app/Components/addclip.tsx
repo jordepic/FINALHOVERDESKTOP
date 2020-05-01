@@ -141,14 +141,14 @@ export const AddClip = () => {
     ipcRenderer.send('ffmpeg-path-fetch');
   }, [])
 
-  useEffect(() => {
-    ipcRenderer.on('start-watcher', (_, arg) => {
-      const path = arg.path;
-      const uploadExisting = arg.uploadExisting;
-      watcher = null;
-      startWatcher(path, uploadExisting);
-    })
-  }, [])
+  // useEffect(() => {
+  //   ipcRenderer.on('start-watcher', (_, arg) => {
+  //     const path = arg.path;
+  //     const uploadExisting = arg.uploadExisting;
+  //     watcher = null;
+  //     startWatcher(path, uploadExisting);
+  //   })
+  // }, [])
 
   useEffect(() => {
     if (chokidarClip !== ""){

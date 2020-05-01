@@ -243,14 +243,14 @@ export const UserView : React.SFC<RouteComponentProps> = props => {
               <p id={styles.storageText}>Used {filesize(clipSize)} of 50 GB</p>
               <AddClip />
               <br/>
-              <p id={styles.storageText}>Current clip uploader file path:</p>
+              {/* <p id={styles.storageText}>Current clip uploader file path:</p>
               <p id={styles.storageText} style={clipPath === '' ? {color: "red"} : {}}>{clipPath === '' ? "Not Set" : clipPath}</p>
               {clipPath === '' ? 
               <p id={styles.storageText}>You can change your clip path with the menu in the top right corner.  Note that if you choose a directory, we will also
               detect new video clips in the sub folders!</p>
               :
               <div></div>
-              }
+              } */}
             </div>
           </div>
         </div>
@@ -282,9 +282,9 @@ export const UserView : React.SFC<RouteComponentProps> = props => {
                     </div>
                     <div className={styles.dropdownMenu} onClick={logOut}
                     > Log out</div>
-                    <div className={styles.dropdownMenu} onClick={changeDirectory}>
+                    {/* <div className={styles.dropdownMenu} onClick={changeDirectory}>
                       Choose Clip Folder
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
