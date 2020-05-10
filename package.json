@@ -1,6 +1,6 @@
 {
   "name": "hover-desktop",
-  "productName": "Hover.gg",
+  "productName": "HoverGG",
   "version": "1.0.0",
   "description": "Hover desktop client.",
   "scripts": {
@@ -52,7 +52,7 @@
     ]
   },
   "build": {
-    "productName": "Hover.gg",
+    "productName": "HoverGG",
     "appId": "org.develar.ElectronReact",
     "files": [
       "dist/",
@@ -109,7 +109,7 @@
   "author": {
     "name": "Jordan Epstein",
     "email": "jordan@skwads.com",
-    "url": "https://hover.gg"
+    "url": "https://HoverGG"
   },
   "contributors": [],
   "license": "MIT",

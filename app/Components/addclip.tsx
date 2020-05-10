@@ -22,6 +22,8 @@ export const AddClip = () => {
   const [ffMpegPath, setffMpegPath] = useState("");
   const [ffProbePath, setFFProbePath] = useState("");
 
+  const [showCancelUpload, setShowCancelUpload] = useState(false);
+
   let watcher : null | chokidar.FSWatcher = null;
 
   const getThumbnail = async (path : string, file: File) => {
@@ -31,11 +33,17 @@ export const AddClip = () => {
       ffmpeg(path)
         .on('start', () => {
           let upload = {name: path.replace(/^.*[\\\/]/, ''), stage: "Getting Thumbnail", loaded: 0, total: 0};
-          setCurrentUploads([upload]);
+          if (currentClip != "") {
+            setCurrentUploads([upload]);
+          }
+        })
+        .on('error', (err,stdout,stderr) => {
+          console.log('Cannot Process Video' + err.message);
         })
         .on('end', function() {
           fs.readFile('tn.png', (_, data) => {
-            let thumb = new File([data], "thumbnail.png")
+            let thumb = new File([data], "thumbnail.png");
+            setShowCancelUpload(false);
             uploadFile(file, thumb);
           })
         })
@@ -61,15 +69,19 @@ export const AddClip = () => {
       .output('temp.mp4')
       .on('start', () => {
         let upload = {name: path.replace(/^.*[\\\/]/, ''), stage: "Compressing", loaded: 0, total: 100};
-        setCurrentUploads([upload]);
+        if (currentClip != "") {
+          setCurrentUploads([upload]);
+        }
       })
-      .on('stderr', (err,stdout,stderr) => {
+      .on('error', (err,stdout,stderr) => {
         console.log('Cannot Process Video' + err.message);
       })
       .on('progress', progress => {
         console.log(progress.percent);
         let upload = {name: path.replace(/^.*[\\\/]/, ''), stage: "Compressing", loaded: progress.percent, total: 100};
-        setCurrentUploads([upload]);
+        if (currentClip != "") {
+          setCurrentUploads([upload]);
+        }
       })
       .on('end', (stdout, stderr) => {
         fs.readFile('temp.mp4', (error, data) => {
@@ -98,15 +110,17 @@ export const AddClip = () => {
   }
 
   const uploadFile = (clip : File, thumbnail: File) => {
-    refreshToken(auth.refresh_token)
+    if (currentClip != "") {
+      refreshToken(auth.refresh_token)
       .then((accessToken : string) => {
         uploadClip(accessToken, auth.userId, clip, thumbnail)
           .then(() => {
             setFetchHook(fetchHook + 1);
             setCurrentClip("");
           });
-      })      
-  }
+        })      
+      }
+    } 
 
   const startWatcher = (path : string, uploadExisting : boolean) => {
     let ready = false;
@@ -197,8 +211,22 @@ export const AddClip = () => {
     }
   }, [clipsToUpload])
 
+  const cancelUpload = () => {
+    setCurrentClip("");
+    setCurrentUploads([]);
+  }
+
   return (<div id={styles.uploadButton}>
-    <Dropzone accept="video/mp4,video/x-m4v,video/*"
+
+    {
+      showCancelUpload ?
+      <div style={{ marginBottom: 0, outline: "none" }} onClick={cancelUpload}>
+          <div id={styles.uploadButtonHelper}>
+            <p id={styles.uploadVideoText}>Cancel Upload</p>
+          </div>
+      </div>
+      :
+      <Dropzone accept="video/mp4,video/x-m4v,video/*"
       onDrop={acceptedFile => {
         let temp : string[] = []
         temp.concat(clipsToUpload);
@@ -216,6 +244,7 @@ export const AddClip = () => {
           </div>
         </section>
       )}
-    </Dropzone>
+      </Dropzone>
+    }
   </div >)
 }

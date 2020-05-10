@@ -65,7 +65,7 @@ const createWindow = async () => {
     minWidth: 1024,
     frame: false,
     titleBarStyle: "hidden",
-    title: "Hover.gg",
+    title: "HoverGG",
     icon: path.join(__dirname, 'Assets/desktopicon.png'),
     webPreferences:
       process.env.NODE_ENV === 'development' || process.env.E2E_BUILD === 'true'
@@ -171,7 +171,7 @@ app.on('ready', () => {
   const trayIcon = path.join(__dirname, 'Assets/tray.png');
   const nimage = nativeImage.createFromPath(trayIcon);
   tray = new Tray(nimage);
-  tray.setToolTip('Hover.gg')
+  tray.setToolTip('HoverGG')
   const contextMenu = Menu.buildFromTemplate([
     { label: 'Open', click:  function(){
         mainWindow.show();

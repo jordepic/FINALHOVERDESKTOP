@@ -1,11 +1,11 @@
 {
   "name": "hover-desktop-client",
-  "productName": "Hover.gg",
+  "productName": "HoverGG",
   "version": "1.0.0",
   "description": "Desktop Client built for hover gaming",
   "main": "./main.prod.js",
   "author": {
-    "name": "Hover.gg",
+    "name": "HoverGG",
     "email": "support@skwads.com",
     "url": "https://github.com/electron-react-boilerplate"
   },
