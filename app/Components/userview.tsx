@@ -225,7 +225,7 @@ export const UserView : React.SFC<RouteComponentProps> = props => {
       {loading ? <div></div> : <VideoPlayer />}
       <div className={styles.flexContainerHorizontal} style={(video === "") ? {} : { opacity: .7 }}>
       <div id={styles.clipUploaderView}></div>
-        <div id={styles.clipUploaderView} style={{position: "fixed", left:0, top: "30px"}}>
+        <div id={styles.clipUploaderView} style={{position: "fixed", left:0}}>
           <div className={styles.uploadContainerVertical}>
             <div className={styles.upperLeftContainer}>
               <img src={hover} id={styles.leftLogo} />
@@ -266,7 +266,7 @@ export const UserView : React.SFC<RouteComponentProps> = props => {
           </div>
           <div className={styles.uploadContainerVertical}>
           <div className={styles.upperContainer}></div>
-            <div className={styles.upperContainer} style={{position: "fixed", top: "30px", left: "15%", width: "85%", background: "#26293B", zIndex: 50}}>
+            <div className={styles.upperContainer} style={{position: "fixed", left: "15%", width: "85%", background: "#26293B", zIndex: 50}}>
               <div id={styles.searchBarWrapper}>
                 <img src={search} id={styles.searchBarIcon} />
                 <input onChange={searchChange} type="text" placeholder="Search" id={styles.searchBar}></input>
