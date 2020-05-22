@@ -38,10 +38,10 @@ export const AddClip = () => {
           }
         })
         .on('error', (err,stdout,stderr) => {
-          console.log('Cannot Process Video' + err.message);
+          
         })
         .on('end', function() {
-          fs.readFile('tn.png', (_, data) => {
+          fs.readFile('/tmp/tn.png', (_, data) => {
             let thumb = new File([data], "thumbnail.png");
             setShowCancelUpload(false);
             uploadFile(file, thumb);
@@ -50,7 +50,9 @@ export const AddClip = () => {
         .screenshots({
         // Will take screens at 20%, 40%, 60% and 80% of the video
           count: 1,
-          size: '320x320'
+          size: '320x320',
+          folder: '/tmp',
+          filename: 'tn.png'
         });
     }
   }
@@ -66,7 +68,7 @@ export const AddClip = () => {
         '-y',
         '-movflags','faststart'
       ])
-      .output('temp.mp4')
+      .output('/tmp/temp.mp4')
       .on('start', () => {
         let upload = {name: path.replace(/^.*[\\\/]/, ''), stage: "Compressing", loaded: 0, total: 100};
         if (currentClip != "") {
@@ -74,7 +76,7 @@ export const AddClip = () => {
         }
       })
       .on('error', (err,stdout,stderr) => {
-        console.log('Cannot Process Video' + err.message);
+        
       })
       .on('progress', progress => {
         console.log(progress.percent);
@@ -84,7 +86,7 @@ export const AddClip = () => {
         }
       })
       .on('end', (stdout, stderr) => {
-        fs.readFile('temp.mp4', (error, data) => {
+        fs.readFile('/tmp/temp.mp4', (error, data) => {
             const filename = path.replace(/^.*[\\\/]/, '');
             let file = new File([data], filename)
             getThumbnail(path, file);
